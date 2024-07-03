@@ -127,6 +127,8 @@ protected:
         ANALOG   = 0x08,
         NMEA     = 0x09,
         ASP5033  = 0x0A,
+        MS5611_1 = 0x0B,
+        MS5611_2 = 0x0C,
     };
     
 private:
