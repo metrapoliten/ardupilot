@@ -102,7 +102,7 @@ public:
     
     /*
      * Set the speed of future transfers. Depending on the bus the speed may
-     * be shared for all devices on the same bus.
+     * be shared for all devices on the same bus.git 
      *
      * Return: true if speed was successfully set or platform doesn't implement
      * it; false otherwise.
