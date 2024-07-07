@@ -54,6 +54,7 @@
 #include "AP_Airspeed_MSP.h"
 #include "AP_Airspeed_External.h"
 #include "AP_Airspeed_SITL.h"
+#include "AP_Airspeed_ARDU.h"
 extern const AP_HAL::HAL &hal;
 
 #include <AP_Vehicle/AP_FixedWing.h>
@@ -354,6 +355,11 @@ void AP_Airspeed::allocate()
         case TYPE_NONE:
             // nothing to do
             break;
+        case TYPE_ARDU:
+#if AP_AIRSPEED_ARDU_ENABLED
+            sensor[i] = NEW_NOTHROW AP_Airspeed_ARDU(*this, i);
+            break;
+#endif
         case TYPE_I2C_MS4525:
 #if AP_AIRSPEED_MS4525_ENABLED
             sensor[i] = NEW_NOTHROW AP_Airspeed_MS4525(*this, i);

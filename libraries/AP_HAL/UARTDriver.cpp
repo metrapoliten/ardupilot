@@ -1,6 +1,10 @@
 /*
   implement generic UARTDriver code, including port locking
  */
+
+//DEBUG
+#include <cstdio>
+
 #include "AP_HAL.h"
 #include <AP_Logger/AP_Logger.h>
 

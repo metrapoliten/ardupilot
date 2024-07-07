@@ -55,7 +55,7 @@ private:
     uint8_t _checksum;                      // checksum accumulator
     bool _term_is_checksum;                 // current term is the checksum
     bool _sentence_done;                    // has the current term already been decoded
-    bool _sentence_valid;                   // is the decodeing valid so far
+    bool _sentence_valid;                   // is the decoding valid so far
     sentence_types _sentence_type;          // the sentence type currently being processed
 
     // Store the temp ready for a temp request

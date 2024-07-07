@@ -140,6 +140,7 @@ airspeed_types = {
     0x08 : "DEVTYPE_AIRSPEED_ANALOG",
     0x09 : "DEVTYPE_AIRSPEED_NMEA",
     0x0A : "DEVTYPE_AIRSPEED_ASP5033",
+    0x0B : "DEVTYPE_AIRSPEED_ARDU",
 }
     
 decoded_devname = ""

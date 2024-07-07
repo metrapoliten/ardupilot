@@ -639,7 +639,8 @@ AP_HAL::UARTDriver *AP_SerialManager::find_serial(enum SerialProtocol protocol, 
         return nullptr;
     }
     const uint8_t serial_idx = _state->idx;
-
+//DEBUG
+    DEV_PRINTF("serial_%d\n", serial_idx);
     // set options before any user does begin()
     AP_HAL::UARTDriver *port = hal.serial(serial_idx);
 

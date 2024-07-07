@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 project(Ardupilot)
 
 add_compile_options(-std=c++11)
-set(TARGET_PLATFORM sitl)
-#set(TARGET_PLATFORM chibios)
+#set(TARGET_PLATFORM sitl)
+set(TARGET_PLATFORM chibios)
 #set(TARGET_PLATFORM linux)
 
 string(TOUPPER ${TARGET_PLATFORM} TARGET_PLATFORM_UPPER)
