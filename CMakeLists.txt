@@ -15,7 +15,7 @@ if(${TARGET_PLATFORM} MATCHES sitl)
     set(SUB_TARGET_PLATFORM sitl)
 elseif(${TARGET_PLATFORM} MATCHES chibios)
     add_definitions(-DCONFIG_HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_CHIBIOS_FMUV3)
-    set(SUB_TARGET_PLATFORM fmuv3)
+    set(SUB_TARGET_PLATFORM MatekF405-Wing)
 endif()
 add_definitions(-DHAL_WITH_UAVCAN)
 

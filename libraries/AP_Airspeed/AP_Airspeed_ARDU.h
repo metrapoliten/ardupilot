@@ -25,20 +25,19 @@ public:
     bool get_temperature(float &temperature) override;
 
 private:
-    bool _parse(char c);
 
     // pointer to serial uart
     AP_HAL::UARTDriver *_uart = nullptr;
 
-    char    _term_buf[15];                     // buffer for the current term within the current sentence
+    char    _term_buf[15];                  // buffer for the current term within the current sentence
     uint8_t _term_buf_len = 0;              // buffer length
 
     // store last sent speed and temp as update rate is slow
     float _last_speed;
     float _last_temp;
 
-    float _speed_sum;
-    float _temp_sum;
+    float _speed_sum = 0;
+    float _temp_sum  = 0;
 
     uint16_t _speed_count = 0;
     uint16_t _temp_count  = 0;

@@ -2,32 +2,26 @@
 
 #if AP_AIRSPEED_ARDU_ENABLED
 
-#include "AP_Airspeed.h"
 #include <AP_SerialManager/AP_SerialManager.h>
 #include <stdio.h>
 
-namespace
-{
+namespace {
     constexpr uint32_t TIMEOUT_MS = 2000;
 }
 
 bool AP_Airspeed_ARDU::init() {
     const AP_SerialManager &serial_manager = AP::serialmanager();
-    //DEBUG
-    ::printf("AS sensor: try to found\n");
+
     _uart = serial_manager.find_serial(AP_SerialManager::SerialProtocol_AirSpeed, 0);
     if (_uart == nullptr) {
         return false;
     }
-    //DEBUG
-    ::printf("AS sensor: found\n");
-//    set_bus_id(AP_HAL::Device::make_bus_id(AP_HAL::Device::BUS_TYPE_SERIAL, 0, 0, 0));
+
+    set_bus_id(AP_HAL::Device::make_bus_id(AP_HAL::Device::BUS_TYPE_SERIAL, 0, 0, 0));
 
     _uart->begin(serial_manager.find_baudrate(AP_SerialManager::SerialProtocol_AirSpeed, 0));
-    ::printf("AS sensor: baud = %d\n", _uart->get_baud_rate());
-    //DEBUG
-    ::printf("AS sensor: begin...\n");
-//    set_use_zero_offset();
+
+    set_use_zero_offset();
 
     return true;
 }
@@ -40,10 +34,8 @@ bool AP_Airspeed_ARDU::get_airspeed(float &airspeed) {
     uint32_t now         = AP_HAL::millis();
     bool     parse_start = false;
 
-    uint32_t nbytes      = _uart->available();
+    uint32_t nbytes = _uart->available();
     while (nbytes-- > 0) {
-        //DEBUG
-//        ::printf("AS : bytes are received:\n");
         int16_t c = _uart->read();
         if (c == -1) {
             return false;
@@ -72,13 +64,9 @@ bool AP_Airspeed_ARDU::get_airspeed(float &airspeed) {
     }
     if (_speed_count == 0) {
         airspeed = _last_speed;
-        //DEBUG
-        ::printf("AS : airspeed: %f\n", airspeed);
     } else {
-        airspeed = _speed_sum / _speed_count;
+        airspeed    = _speed_sum / _speed_count;
         _last_speed = airspeed;
-        //DEBUG
-        ::printf("AS : airspeed: %f\n", airspeed);
     }
     return (now - _last_update_ms) < TIMEOUT_MS;
 }
@@ -91,15 +79,11 @@ bool AP_Airspeed_ARDU::get_temperature(float &temperature) {
     if (_temp_count == 0) {
         temperature = _last_temp;
     } else {
-        // return average of all measurements
         temperature = _temp_sum / _temp_count;
         _last_temp  = temperature;
         _temp_count = 0;
         _temp_sum   = 0;
     }
-    //DEBUG
-//    ::printf("AS : temperature: %f\n", temperature);
-
     return true;
 }
 
